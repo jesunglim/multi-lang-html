@@ -1,9 +1,8 @@
 from utils.html import *
+from utils.translator import *
+from editer import *
 
-import googletrans
 
-
-trans = googletrans.Translator()
 
 
 html_start = '''<!DOCTYPE html>\n<html>\n<head>\n'''
@@ -38,39 +37,11 @@ def merge_html(languages):
 def merge_html_lang(content):
     return html_start_lang + "".join(content) + html_end
 
-def t(word, lang):
-    if lang == 'ko':
-        return word
-    
-    return (trans.translate(word, dest=lang)).text
 
 
 
 
-def editor(lang):
-    
-    content = [
-        h3(t("Magic Mask", lang)) ,
-        "<br>",
-        h1(t("고도로 발전된 기술은 마법과 구별되지 않는다 - 클라크의 삼법칙", lang)),
-        "<br>",
-        "<br>",
-        h2(t("Product launch soon.", lang)),
-        "<br>",
-        "<br>",
-        "<br>",
-        br(),
-        br(),
-        br(),
-        br(),
-        br(),
-        p("사업자 등록 번호 : 000-00-00000   |   이메일 : example@company.com")
 
-    ]
-    
-    return content
-
-lang_list = ['en', 'ja', 'zh-cn', 'zh-tw']
 
 def main():
     f = open('index.html', 'w')
@@ -82,7 +53,7 @@ def main():
     f.close()
 
     for i in lang_list:
-        trans_page = merge_html_lang(editor(l))
+        trans_page = merge_html_lang(editor(i))
 
         f = open(f'lang/{i}.html', 'w')
         f.write(trans_page)

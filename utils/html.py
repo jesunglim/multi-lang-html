@@ -5,7 +5,7 @@ def br():
 def p(word):
     start = "   <p>"
     end = "</p>\n"
-    return start+word+end
+    return str(start+word+end)
 
 def h1(word):
     start = "   <h1>"
